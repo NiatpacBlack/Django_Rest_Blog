@@ -5,110 +5,29 @@
 {% endblock %}
 {% block content_app %}
     <div class="container">
-        <h1 class="my-3">Последние записи блога</h1>
+        <h1 class="my-3 text-center">Последние записи блога</h1>
         <div class="row">
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <img src="{% static 'blog_app/img/old-wood-background-textured.jpg' %}" alt="" class="card-img-top">
-                    <div class="card-body">
-                        <h4 class="card-title">Заголовок</h4>
-                        <p class="card-text">Это красткое описание поста. Это красткое описание поста. Это красткое
-                            описание поста. </p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <a href="#" class="btn btn-sm btn-outline-secondary">Подробнее</a>
-                            </div>
-                            <small class="text-muted">22.10.2020</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <img src="{% static 'blog_app/img/blue-liquid-marble-background-diy-flowing-texture-experimental-art.jpg' %}"
-                         alt="" class="card-img-top">
-                    <div class="card-body">
-                        <h4 class="card-title">Заголовок</h4>
-                        <p class="card-text">Это красткое описание поста. Это красткое описание поста. Это красткое
-                            описание поста. </p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <a href="#" class="btn btn-sm btn-outline-secondary">Подробнее</a>
-                            </div>
-                            <small class="text-muted">21.10.2020</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <img src="{% static 'blog_app/img/bw-greek-statue-image-in-torn-paper-style-remixed-media.jpg' %}"
-                         alt="" class="card-img-top">
-                    <div class="card-body">
-                        <h4 class="card-title">Заголовок</h4>
-                        <p class="card-text">Это красткое описание поста. Это красткое описание поста. Это красткое
-                            описание поста. </p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <a href="#" class="btn btn-sm btn-outline-secondary">Подробнее</a>
-                            </div>
-                            <small class="text-muted">20.10.2020</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <img src="{% static 'blog_app/img/metallic-holographic-background.jpg' %}" alt=""
-                         class="card-img-top">
-                    <div class="card-body">
-                        <h4 class="card-title">Заголовок</h4>
-                        <p class="card-text">Это красткое описание поста. Это красткое описание поста. Это красткое
-                            описание поста. </p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <a href="#" class="btn btn-sm btn-outline-secondary">Подробнее</a>
+            {% for post in all_posts %}
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ post.title }}</h4>
+                            <img src="../static/blog_app/media/{{ post.image }}" alt="" class="card-img-top">
+                            <p class="card-text">{{ post.description|safe|truncatechars:1000 }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href="#" class="btn btn-sm btn-outline-secondary">Подробнее</a>
+                                </div>
+                                <small class="text-muted">{{ post.author }}</small>
+                                <small class="text-muted">{{ post.created_data }}</small>
                             </div>
-                            <small class="text-muted">19.10.2020</small>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <img src="{% static 'blog_app/img/photo-paintings-photo-canvases-hang-on-the-wall.jpg' %}" alt=""
-                         class="card-img-top">
-                    <div class="card-body">
-                        <h4 class="card-title">Заголовок</h4>
-                        <p class="card-text">Это красткое описание поста. Это красткое описание поста. Это красткое
-                            описание поста. </p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <a href="#" class="btn btn-sm btn-outline-secondary">Подробнее</a>
-                            </div>
-                            <small class="text-muted">18.10.2020</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <img src="{% static 'blog_app/img/christmas-sweater-with-green-details-above-view.jpg' %}" alt=""
-                         class="card-img-top">
-                    <div class="card-body">
-                        <h4 class="card-title">Заголовок</h4>
-                        <p class="card-text">Это красткое описание поста. Это красткое описание поста. Это красткое
-                            описание поста. </p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <a href="#" class="btn btn-sm btn-outline-secondary">Подробнее</a>
-                            </div>
-                            <small class="text-muted">17.10.2020</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                <div class="col-md-1"></div>
+            {% endfor %}
         </div>
     </div>
     <nav aria-label="Paginate me">
