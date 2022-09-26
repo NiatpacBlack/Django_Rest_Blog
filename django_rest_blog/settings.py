@@ -27,6 +27,7 @@ INSTALLED_APPS = [
 
     'ckeditor',
     'ckeditor_uploader',
+    'crispy_forms',
 
     'main_app.apps.MainAppConfig',
     'blog_app.apps.BlogAppConfig',
@@ -149,3 +150,6 @@ CKEDITOR_CONFIGS = {
 }
 
 ###################################
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

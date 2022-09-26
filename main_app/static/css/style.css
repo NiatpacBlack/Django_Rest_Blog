@@ -22,9 +22,8 @@
     height: 20rem;
 }
 
-/*.main-content {*/
-/*    flex-grow: 1;*/
-/*}*/
-
+.asteriskField {
+    display: none;
+}
 
 
