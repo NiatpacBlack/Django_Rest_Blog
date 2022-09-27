@@ -1,7 +1,9 @@
 from django.urls import path
+
 from . import views
 
+
 urlpatterns = [
-    path('', views.contacts_page, name='contacts'),
-    path('thanks/', views.thanks_page, name='thanks'),
+    path('', views.FeedBackView.as_view(), name='contacts'),
+    path('thanks/', views.ThanksView.as_view(), name='thanks'),
 ]

@@ -1,17 +1,17 @@
-from django import forms
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit
+from crispy_forms.layout import Layout, Submit, Row, Column
+from django import forms
 
 
 class FeedBackForm(forms.Form):
-    """Форма отправки обратной связи администратору."""
+    """Форма отправки обратной связи администратору на email."""
 
     name = forms.CharField(
         label='',
         max_length=255,
         required=True,
         widget=forms.TextInput(attrs={
-            'class': "form-control my-3",
+            'class': "form-control",
             'placeholder': "Ваше имя",
             'id': "inputName",
         }),
@@ -21,7 +21,7 @@ class FeedBackForm(forms.Form):
         max_length=255,
         required=True,
         widget=forms.EmailInput(attrs={
-            'class': "form-control my-3",
+            'class': "form-control",
             'placeholder': "Ваша почта",
             'id': "inputEmail",
         }),
@@ -31,7 +31,7 @@ class FeedBackForm(forms.Form):
         max_length=255,
         required=True,
         widget=forms.TextInput(attrs={
-            'class': "form-control my-3",
+            'class': "form-control mb-4",
             'placeholder': "Тема",
             'id': "inputSubject",
         }),
@@ -40,9 +40,9 @@ class FeedBackForm(forms.Form):
         label='',
         max_length=255,
         required=True,
-        widget=forms.TextInput(attrs={
-            'class': "form-control my-3",
-            'placeholder': "Тема",
+        widget=forms.Textarea(attrs={
+            'class': "form-control mb-4",
+            'placeholder': "Ваше сообщение",
             'id': "inputMessage",
         }),
     )
@@ -53,8 +53,11 @@ class FeedBackForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            'name',
-            'email',
+            Row(
+                Column('name', css_class='form-group col-md-6'),
+                Column('email', css_class='form-group col-md-6'),
+                css_class='form-row'
+            ),
             'subject',
             'message',
             Submit('submit', 'Отправить', css_class='btn btn-primary'),

@@ -2,11 +2,10 @@ from django.contrib.auth import login
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views import View
-
 from loguru import logger
 
-from authorization_app.forms import AuthorizationForm
 from authorization_app.authorization_services.services import authenticate_user
+from authorization_app.forms import AuthorizationForm
 
 
 class AuthorizationView(View):

@@ -2,11 +2,10 @@ from django.contrib.auth import login
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views import View
-
 from loguru import logger
 
-from registration_app.forms import RegistrationForm
 from authorization_app.authorization_services.services import authenticate_user
+from registration_app.forms import RegistrationForm
 
 
 class RegistrationView(View):
@@ -14,7 +13,7 @@ class RegistrationView(View):
 
     @logger.catch
     def get(self, request):
-        """Отображение шаблона страницы с формой."""
+        """Отображает шаблон страницы с формой."""
 
         return render(
             request,

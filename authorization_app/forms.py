@@ -1,6 +1,6 @@
-from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, HTML
+from django import forms
 
 
 class AuthorizationForm(forms.Form):
@@ -38,7 +38,3 @@ class AuthorizationForm(forms.Form):
             'password',
             Submit('submit', 'Войти', css_class='btn my-3 btn-lg btn-success btn-block'),
         )
-
-
-
-
