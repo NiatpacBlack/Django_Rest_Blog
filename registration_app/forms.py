@@ -3,11 +3,9 @@ from django.contrib.auth.models import User
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit
 
-from authorization_app.authorization_services.services import authenticate_user
-
 
 class RegistrationForm(forms.Form):
-    """Форма регистрации нового пользователя."""
+    """Форма регистрации нового пользователя на сайте."""
 
     username = forms.CharField(
         label='',
@@ -41,7 +39,7 @@ class RegistrationForm(forms.Form):
     )
 
     def __init__(self, *args, **kwargs):
-        """При создании объекта класса FormHelper создаст html шаблон форм."""
+        """При создании объекта класса - FormHelper создаст html шаблон форм."""
 
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -49,19 +47,20 @@ class RegistrationForm(forms.Form):
             'username',
             'password',
             'repeat_password',
-            Submit('submit', 'Регистрация', css_class='btn my-3 btn-lg btn-primary btn-block')
+            Submit('submit', 'Регистрация', css_class='btn my-3 btn-lg btn-primary btn-block'),
         )
 
     def clean(self):
-        """Вернет ошибку если пароль не совпадает с подтверждением пароля."""
+        """Автоматически проверит заполненную форму на наличие username в базе данных и проверит корректность пароля."""
 
+        username = self.cleaned_data['username']
         password = self.cleaned_data['password']
         confirm_password = self.cleaned_data['repeat_password']
 
         if password != confirm_password:
-            raise forms.ValidationError(
-                "Пароли не совпадают"
-            )
+            raise forms.ValidationError("Пароли не совпадают")
+        elif User.objects.filter(username=username):
+            raise forms.ValidationError("Пользователь с таким именем существует")
 
     def save_new_user(self):
         """Внести данные нового пользователя в таблицу User. И аутентифицировать его."""
@@ -71,4 +70,3 @@ class RegistrationForm(forms.Form):
             password=self.cleaned_data['password'],
         )
         new_user.save()
-        return authenticate_user(self)
