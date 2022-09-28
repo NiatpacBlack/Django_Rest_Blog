@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'crispy_forms',
+    'taggit',
 
     'main_app.apps.MainAppConfig',
     'blog_app.apps.BlogAppConfig',

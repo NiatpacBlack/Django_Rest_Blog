@@ -2,6 +2,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
+from taggit.managers import TaggableManager
 
 
 class PostModel(models.Model):
@@ -15,6 +16,7 @@ class PostModel(models.Model):
     content = RichTextUploadingField()
     author = models.ForeignKey(User, related_name='posts', on_delete=models.CASCADE)
     created_data = models.DateField(default=timezone.now)
+    tag = TaggableManager()
 
     def __str__(self):
         return self.title
