@@ -15,7 +15,10 @@ class BlogPageView(View):
             request,
             'blog_app/blog_page.html',
             context={
-                'posts_for_page': get_posts_for_page(request.GET.get('page'))
+                'posts_for_page': get_posts_for_page(
+                    page_number=request.GET.get('page'),
+                    quantity_posts_for_page=6,
+                )
             },
         )
 

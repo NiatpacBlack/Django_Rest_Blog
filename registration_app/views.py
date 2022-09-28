@@ -13,7 +13,7 @@ class RegistrationView(View):
 
     @logger.catch
     def get(self, request):
-        """Отображает шаблон страницы с формой."""
+        """Отображает шаблон страницы регистрации с формой."""
 
         return render(
             request,
