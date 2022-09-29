@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import View
 from loguru import logger
+from taggit.models import Tag
 
-from blog_app.blog_services.models_services import find_query_in_posts_table
+from blog_app.blog_services.models_services import find_query_in_posts_table, get_posts_where_tag, \
+    get_common_tags_from_posts_table
 from blog_app.blog_services.view_services import get_posts_for_page_from_result_of_find
 from search_app.forms import SearchForm
 
@@ -33,5 +35,24 @@ class SearchResultsView(View):
                     quantity_posts_for_page=10,
                 ),
                 'count': len(result),
+            }
+        )
+
+
+class TagView(View):
+    """Представления страницы определенных тегов"""
+
+    @logger.catch
+    def get(self, request, slug):
+        tag = get_object_or_404(Tag, slug=slug)
+        posts = get_posts_where_tag(tag_name=tag)
+        common_tags = get_common_tags_from_posts_table()
+        return render(
+            request,
+            'search_app/tag_page.html',
+            context={
+                'title': f'{tag}',
+                'posts': posts,
+                'common_tags': common_tags,
             }
         )

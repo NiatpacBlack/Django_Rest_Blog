@@ -10,6 +10,22 @@ def get_post_or_404(url: str):
     return get_object_or_404(PostModel, url=url)
 
 
+def get_posts_where_tag(tag_name: str):
+    """Возвращает QuerySet постов из таблицы PostModel. Где присутствует тег tag_name."""
+
+    return PostModel.objects.filter(tag=tag_name)
+
+
+def get_common_tags_from_posts_table():
+    """
+    Возвращает QuerySet со всеми часто используемыми тегами при помощи метода most_common.
+
+    Поскольку постов немного в тестовой версии сайта, выводятся все посты у которых больше 2 упоминаний.
+    """
+
+    return PostModel.tag.most_common(2)
+
+
 def get_all_posts_from_blog():
     """Возвращает QuerySet всех постов в таблице PostModel. В обратном порядке."""
 

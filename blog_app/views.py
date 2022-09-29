@@ -24,7 +24,7 @@ class BlogPageView(View):
 
 
 class PostPageView(View):
-    """Отображает страницу создания поста."""
+    """Отображает страницу с полной информацией конкретного поста."""
 
     @logger.catch
     def get(self, request, url):
