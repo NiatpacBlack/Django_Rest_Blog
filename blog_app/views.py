@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views import View
 from loguru import logger
 
-from .blog_services.models_services import get_post_or_404
+from .blog_services.models_services import get_post_or_404, get_five_last_posts_in_posts_table
 from .blog_services.view_services import get_posts_for_page
 
 
@@ -32,6 +32,7 @@ class PostPageView(View):
             request,
             'blog_app/post_page.html',
             context={
-                'post': get_post_or_404(url=url)
+                'post': get_post_or_404(url=url),
+                'last_posts': get_five_last_posts_in_posts_table(),
             },
         )

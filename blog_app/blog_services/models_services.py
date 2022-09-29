@@ -26,6 +26,12 @@ def get_common_tags_from_posts_table():
     return PostModel.tag.most_common(2)
 
 
+def get_five_last_posts_in_posts_table():
+    """Возвращает QuerySet пяти последних постов из таблицы PostModel."""
+
+    return PostModel.objects.all()[:5][::-1]
+
+
 def get_all_posts_from_blog():
     """Возвращает QuerySet всех постов в таблице PostModel. В обратном порядке."""
 
