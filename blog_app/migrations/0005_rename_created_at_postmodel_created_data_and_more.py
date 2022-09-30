@@ -9,28 +9,32 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('blog_app', '0004_alter_postmodel_image'),
+        ("blog_app", "0004_alter_postmodel_image"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='postmodel',
-            old_name='created_at',
-            new_name='created_data',
+            model_name="postmodel",
+            old_name="created_at",
+            new_name="created_data",
         ),
         migrations.AlterField(
-            model_name='postmodel',
-            name='author',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='posts', to=settings.AUTH_USER_MODEL),
+            model_name="postmodel",
+            name="author",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="posts",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
         migrations.AlterField(
-            model_name='postmodel',
-            name='heading',
+            model_name="postmodel",
+            name="heading",
             field=models.CharField(max_length=255),
         ),
         migrations.AlterField(
-            model_name='postmodel',
-            name='title',
+            model_name="postmodel",
+            name="title",
             field=models.CharField(max_length=255),
         ),
     ]

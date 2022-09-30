@@ -7,44 +7,52 @@ class FeedBackForm(forms.Form):
     """Форма отправки обратной связи администратору на email."""
 
     name = forms.CharField(
-        label='',
+        label="",
         max_length=255,
         required=True,
-        widget=forms.TextInput(attrs={
-            'class': "form-control",
-            'placeholder': "Ваше имя",
-            'id': "inputName",
-        }),
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Ваше имя",
+                "id": "inputName",
+            }
+        ),
     )
     email = forms.CharField(
-        label='',
+        label="",
         max_length=255,
         required=True,
-        widget=forms.EmailInput(attrs={
-            'class': "form-control",
-            'placeholder': "Ваша почта",
-            'id': "inputEmail",
-        }),
+        widget=forms.EmailInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Ваша почта",
+                "id": "inputEmail",
+            }
+        ),
     )
     subject = forms.CharField(
-        label='',
+        label="",
         max_length=255,
         required=True,
-        widget=forms.TextInput(attrs={
-            'class': "form-control mb-4",
-            'placeholder': "Тема",
-            'id': "inputSubject",
-        }),
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control mb-4",
+                "placeholder": "Тема",
+                "id": "inputSubject",
+            }
+        ),
     )
     message = forms.CharField(
-        label='',
+        label="",
         max_length=255,
         required=True,
-        widget=forms.Textarea(attrs={
-            'class': "form-control mb-4",
-            'placeholder': "Ваше сообщение",
-            'id': "inputMessage",
-        }),
+        widget=forms.Textarea(
+            attrs={
+                "class": "form-control mb-4",
+                "placeholder": "Ваше сообщение",
+                "id": "inputMessage",
+            }
+        ),
     )
 
     def __init__(self, *args, **kwargs):
@@ -54,11 +62,11 @@ class FeedBackForm(forms.Form):
         self.helper = FormHelper()
         self.helper.layout = Layout(
             Row(
-                Column('name', css_class='form-group col-md-6'),
-                Column('email', css_class='form-group col-md-6'),
-                css_class='form-row'
+                Column("name", css_class="form-group col-md-6"),
+                Column("email", css_class="form-group col-md-6"),
+                css_class="form-row",
             ),
-            'subject',
-            'message',
-            Submit('submit', 'Отправить', css_class='btn btn-primary'),
+            "subject",
+            "message",
+            Submit("submit", "Отправить", css_class="btn btn-primary"),
         )

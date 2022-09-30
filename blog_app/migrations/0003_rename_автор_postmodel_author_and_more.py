@@ -6,48 +6,48 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('blog_app', '0002_rename_author_postmodel_автор_and_more'),
+        ("blog_app", "0002_rename_author_postmodel_автор_and_more"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='postmodel',
-            old_name='Автор',
-            new_name='author',
+            model_name="postmodel",
+            old_name="Автор",
+            new_name="author",
         ),
         migrations.RenameField(
-            model_name='postmodel',
-            old_name='Контент',
-            new_name='content',
+            model_name="postmodel",
+            old_name="Контент",
+            new_name="content",
         ),
         migrations.RenameField(
-            model_name='postmodel',
-            old_name='Время создания',
-            new_name='created_at',
+            model_name="postmodel",
+            old_name="Время создания",
+            new_name="created_at",
         ),
         migrations.RenameField(
-            model_name='postmodel',
-            old_name='Описание',
-            new_name='description',
+            model_name="postmodel",
+            old_name="Описание",
+            new_name="description",
         ),
         migrations.RenameField(
-            model_name='postmodel',
-            old_name='Заголовок',
-            new_name='heading',
+            model_name="postmodel",
+            old_name="Заголовок",
+            new_name="heading",
         ),
         migrations.RenameField(
-            model_name='postmodel',
-            old_name='Картинка',
-            new_name='image',
+            model_name="postmodel",
+            old_name="Картинка",
+            new_name="image",
         ),
         migrations.RenameField(
-            model_name='postmodel',
-            old_name='Название',
-            new_name='title',
+            model_name="postmodel",
+            old_name="Название",
+            new_name="title",
         ),
         migrations.RenameField(
-            model_name='postmodel',
-            old_name='Название для url ссылки',
-            new_name='url',
+            model_name="postmodel",
+            old_name="Название для url ссылки",
+            new_name="url",
         ),
     ]

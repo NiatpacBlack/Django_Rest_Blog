@@ -14,7 +14,7 @@ class PostModel(models.Model):
     url = models.SlugField()
     description = RichTextUploadingField()
     content = RichTextUploadingField()
-    author = models.ForeignKey(User, related_name='posts', on_delete=models.CASCADE)
+    author = models.ForeignKey(User, related_name="posts", on_delete=models.CASCADE)
     created_data = models.DateField(default=timezone.now)
     tag = TaggableManager()
 
@@ -22,6 +22,6 @@ class PostModel(models.Model):
         return self.title
 
     class Meta:
-        db_table = 'posts'
-        verbose_name = 'Пост'
-        verbose_name_plural = 'Посты'
+        db_table = "posts"
+        verbose_name = "Пост"
+        verbose_name_plural = "Посты"

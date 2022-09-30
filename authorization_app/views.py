@@ -17,8 +17,8 @@ class AuthorizationView(View):
 
         return render(
             request,
-            'authorization_app/authorization_page.html',
-            context={'form': AuthorizationForm()},
+            "authorization_app/authorization_page.html",
+            context={"form": AuthorizationForm()},
         )
 
     @logger.catch
@@ -26,16 +26,16 @@ class AuthorizationView(View):
         """После проверки корректности формы пользователь будет авторизован и перенаправлен на главную станицу."""
 
         form = AuthorizationForm(request.POST)
-        error = ''
+        error = ""
         if form.is_valid():
             user = authenticate_user(form)
             if user is not None:
                 login(request, user)
-                return HttpResponseRedirect('/')
+                return HttpResponseRedirect("/")
             else:
-                error = 'Логин или пароль неверный'
+                error = "Логин или пароль неверный"
         return render(
             request,
-            'authorization_app/authorization_page.html',
-            context={'form': form, 'error': error},
+            "authorization_app/authorization_page.html",
+            context={"form": form, "error": error},
         )

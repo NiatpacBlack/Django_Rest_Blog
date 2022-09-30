@@ -6,48 +6,48 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('blog_app', '0001_initial'),
+        ("blog_app", "0001_initial"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='postmodel',
-            old_name='author',
-            new_name='Автор',
+            model_name="postmodel",
+            old_name="author",
+            new_name="Автор",
         ),
         migrations.RenameField(
-            model_name='postmodel',
-            old_name='created_at',
-            new_name='Время создания',
+            model_name="postmodel",
+            old_name="created_at",
+            new_name="Время создания",
         ),
         migrations.RenameField(
-            model_name='postmodel',
-            old_name='heading',
-            new_name='Заголовок',
+            model_name="postmodel",
+            old_name="heading",
+            new_name="Заголовок",
         ),
         migrations.RenameField(
-            model_name='postmodel',
-            old_name='image',
-            new_name='Картинка',
+            model_name="postmodel",
+            old_name="image",
+            new_name="Картинка",
         ),
         migrations.RenameField(
-            model_name='postmodel',
-            old_name='content',
-            new_name='Контент',
+            model_name="postmodel",
+            old_name="content",
+            new_name="Контент",
         ),
         migrations.RenameField(
-            model_name='postmodel',
-            old_name='title',
-            new_name='Название',
+            model_name="postmodel",
+            old_name="title",
+            new_name="Название",
         ),
         migrations.RenameField(
-            model_name='postmodel',
-            old_name='url',
-            new_name='Название для url ссылки',
+            model_name="postmodel",
+            old_name="url",
+            new_name="Название для url ссылки",
         ),
         migrations.RenameField(
-            model_name='postmodel',
-            old_name='description',
-            new_name='Описание',
+            model_name="postmodel",
+            old_name="description",
+            new_name="Описание",
         ),
     ]

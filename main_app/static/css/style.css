@@ -22,6 +22,8 @@
     height: 20rem;
 }
 
+
+/*отключение обязательных полей со звездочкой в crispy-forms*/
 .asteriskField {
     display: none;
 }

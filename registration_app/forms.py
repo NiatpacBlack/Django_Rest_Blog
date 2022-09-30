@@ -8,34 +8,40 @@ class RegistrationForm(forms.Form):
     """Форма регистрации нового пользователя на сайте."""
 
     username = forms.CharField(
-        label='',
+        label="",
         max_length=255,
         required=True,
-        widget=forms.TextInput(attrs={
-            'class': "form-control my-3",
-            'placeholder': "Введите имя пользователя",
-            'id': "inputUsername",
-        }),
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control my-3",
+                "placeholder": "Введите имя пользователя",
+                "id": "inputUsername",
+            }
+        ),
     )
     password = forms.CharField(
-        label='',
+        label="",
         max_length=255,
         required=True,
-        widget=forms.PasswordInput(attrs={
-            'class': "form-control my-3",
-            'placeholder': "Введите пароль",
-            'id': "inputPassword",
-        }),
+        widget=forms.PasswordInput(
+            attrs={
+                "class": "form-control my-3",
+                "placeholder": "Введите пароль",
+                "id": "inputPassword",
+            }
+        ),
     )
     repeat_password = forms.CharField(
-        label='',
+        label="",
         max_length=255,
         required=True,
-        widget=forms.PasswordInput(attrs={
-            'class': "form-control my-3",
-            'placeholder': "Повторите пароль",
-            'id': "ReInputPassword",
-        }),
+        widget=forms.PasswordInput(
+            attrs={
+                "class": "form-control my-3",
+                "placeholder": "Повторите пароль",
+                "id": "ReInputPassword",
+            }
+        ),
     )
 
     def __init__(self, *args, **kwargs):
@@ -44,18 +50,22 @@ class RegistrationForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            'username',
-            'password',
-            'repeat_password',
-            Submit('submit', 'Регистрация', css_class='btn my-3 btn-lg btn-primary btn-block'),
+            "username",
+            "password",
+            "repeat_password",
+            Submit(
+                "submit",
+                "Регистрация",
+                css_class="btn my-3 btn-lg btn-primary btn-block",
+            ),
         )
 
     def clean(self):
         """Автоматически проверит заполненную форму на наличие username в базе данных и проверит корректность пароля."""
 
-        username = self.cleaned_data['username']
-        password = self.cleaned_data['password']
-        confirm_password = self.cleaned_data['repeat_password']
+        username = self.cleaned_data["username"]
+        password = self.cleaned_data["password"]
+        confirm_password = self.cleaned_data["repeat_password"]
 
         if password != confirm_password:
             raise forms.ValidationError("Пароли не совпадают")
@@ -66,7 +76,7 @@ class RegistrationForm(forms.Form):
         """Внести данные нового пользователя в таблицу User. И аутентифицировать его."""
 
         new_user = User.objects.create_user(
-            username=self.cleaned_data['username'],
-            password=self.cleaned_data['password'],
+            username=self.cleaned_data["username"],
+            password=self.cleaned_data["password"],
         )
         new_user.save()

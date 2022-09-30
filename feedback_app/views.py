@@ -17,11 +17,8 @@ class FeedBackView(View):
         form = FeedBackForm()
         return render(
             request,
-            'feedback_app/contacts_page.html',
-            context={
-                'form': form,
-                'title': 'Написать мне'
-            },
+            "feedback_app/contacts_page.html",
+            context={"form": form, "title": "Написать мне"},
         )
 
     @logger.catch
@@ -31,26 +28,23 @@ class FeedBackView(View):
         form = FeedBackForm(request.POST)
         if form.is_valid():
             send_mail_from_form(feedback_form=form.cleaned_data)
-            return HttpResponseRedirect('thanks')
+            return HttpResponseRedirect("thanks")
         return render(
             request,
-            'feedback_app/contacts_page.html',
+            "feedback_app/contacts_page.html",
             context={
-                'form': form,
+                "form": form,
             },
         )
 
 
 class ThanksView(View):
-
     @logger.catch
     def get(self, request):
         """Отображает шаблон станицы с благодарностью."""
 
         return render(
             request,
-            'feedback_app/thanks_page.html',
-            context={
-                'title': 'Спасибо'
-            },
+            "feedback_app/thanks_page.html",
+            context={"title": "Спасибо"},
         )

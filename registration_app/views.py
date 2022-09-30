@@ -17,8 +17,8 @@ class RegistrationView(View):
 
         return render(
             request,
-            'registration_app/registration_page.html',
-            context={'form': RegistrationForm()},
+            "registration_app/registration_page.html",
+            context={"form": RegistrationForm()},
         )
 
     @logger.catch
@@ -31,9 +31,9 @@ class RegistrationView(View):
             new_user = authenticate_user(form)
             if new_user is not None:
                 login(request, new_user)
-                return HttpResponseRedirect('/')
+                return HttpResponseRedirect("/")
         return render(
             request,
-            'registration_app/registration_page.html',
-            context={'form': form},
+            "registration_app/registration_page.html",
+            context={"form": form},
         )

@@ -13,7 +13,7 @@
                         <li class="breadcrumb-item active" aria-current="page">{{ post.heading }}</li>
                     </ol>
                 </nav>
-                <img class="img-fluid rounded " src="/static/blog_app/media/{{ post.image }}" alt="">
+                <img class="img-fluid rounded" src="{% static 'blog_app/media/' %}{{ post.image }}" alt="">
                 <hr>
                 <p class="lead">{{ post.content|safe }}</p>
                 <hr>

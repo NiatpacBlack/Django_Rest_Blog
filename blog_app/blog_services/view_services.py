@@ -16,7 +16,9 @@ def get_posts_for_page(page_number: str, quantity_posts_for_page: int):
     return posts_for_page
 
 
-def get_posts_for_page_from_result_of_find(result_of_find: str, page_number: str, quantity_posts_for_page: int):
+def get_posts_for_page_from_result_of_find(
+    result_of_find: str, page_number: str, quantity_posts_for_page: int
+):
     """
     Возвращает QuerySet определенного количества quantity_posts_for_page постов из result_of_find.
 

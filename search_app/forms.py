@@ -7,13 +7,15 @@ class SearchForm(forms.Form):
     """Форма поиска определенного поста по введенному запросу на сайте."""
 
     query = forms.CharField(
-        label='',
+        label="",
         max_length=255,
         required=True,
-        widget=forms.TextInput(attrs={
-            'class': "form-control",
-            'placeholder': "Поиск",
-        }),
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Поиск",
+            }
+        ),
     )
 
     def __init__(self, *args, **kwargs):
@@ -21,8 +23,8 @@ class SearchForm(forms.Form):
 
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.form_method = 'get'
+        self.helper.form_method = "get"
         self.helper.layout = Layout(
-            'query',
-            Submit('submit', 'Поиск', css_class='btn btn-primary mt-3'),
+            "query",
+            Submit("submit", "Поиск", css_class="btn btn-primary mt-3"),
         )
