@@ -45,8 +45,11 @@ class TagView(View):
     @logger.catch
     def get(self, request, slug):
         tag = get_object_or_404(Tag, slug=slug)
+        print(tag)
         posts = get_posts_where_tag(tag_name=tag)
+        print(posts)
         common_tags = get_common_tags_from_posts_table()
+        print(common_tags)
         return render(
             request,
             'search_app/tag_page.html',

@@ -4,6 +4,7 @@ from loguru import logger
 
 from .blog_services.models_services import get_post_or_404, get_five_last_posts_in_posts_table
 from .blog_services.view_services import get_posts_for_page
+from .forms import CreatePostForm
 
 
 class BlogPageView(View):
@@ -34,5 +35,32 @@ class PostPageView(View):
             context={
                 'post': get_post_or_404(url=url),
                 'last_posts': get_five_last_posts_in_posts_table(),
+            },
+        )
+
+
+class CreatePostPageView(View):
+    """Отображает страницу с формой создания новой статьи для блога."""
+
+    @logger.catch
+    def get(self, request):
+        return render(
+            request,
+            'blog_app/create_post_page.html',
+            context={
+                'form': CreatePostForm(),
+            },
+        )
+
+    @logger.catch
+    def post(self, request):
+        form = CreatePostForm(request.POST)
+        if form.is_valid():
+            new_post = form.save()
+        return render(
+            request,
+            'blog_app/create_post_page.html',
+            context={
+                'form': CreatePostForm(),
             },
         )
