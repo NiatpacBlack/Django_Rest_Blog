@@ -1,7 +1,7 @@
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 
-from blog_app.models import PostModel
+from blog_app.models import PostModel, CommentModel
 
 
 def get_post_or_404(url: str):
@@ -48,3 +48,13 @@ def find_query_in_posts_table(query: str):
     return PostModel.objects.filter(
         Q(heading__icontains=query) | Q(content__icontains=query)
     )[::-1]
+
+
+def create_new_comment_for_comments_table(post: str, username: str, text: str):
+    """
+    Добавляет новый комментарий в таблицу CommentModel.
+
+    Комментарий c информацией text для поста post от пользователя username.
+    """
+
+    return CommentModel.objects.create(post=post, username=username, text=text)

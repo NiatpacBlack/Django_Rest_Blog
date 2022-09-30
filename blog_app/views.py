@@ -6,10 +6,10 @@ from loguru import logger
 
 from .blog_services.models_services import (
     get_post_or_404,
-    get_five_last_posts_in_posts_table,
+    get_five_last_posts_in_posts_table, create_new_comment_for_comments_table,
 )
 from .blog_services.view_services import get_posts_for_page
-from .forms import CreatePostForm
+from .forms import CreatePostForm, CommentForm
 
 
 class BlogPageView(View):
@@ -34,13 +34,45 @@ class PostPageView(View):
 
     @logger.catch
     def get(self, request, url):
+        """
+        Отображает шаблон конкретного поста, если полученный url(slug) присутствует в таблице постов PostModel.
+
+        В шаблоне отображается форма для добавления комментария.
+        А так-же выводится пять последних опубликованных постов.
+        """
+
         return render(
             request,
             "blog_app/post_page.html",
             context={
+                'form': CommentForm(),
                 "post": get_post_or_404(url=url),
                 "last_posts": get_five_last_posts_in_posts_table(),
             },
+        )
+
+    def post(self, request, url):
+        """
+        При получении данных заполненной формы, добавляет новый комментарий в таблицу CommentModel.
+
+        После добавления комментария, перенаправляем пользователя на ту страницу с которой он был отправлен.
+        Отправить комментарий может только зарегистрированный пользователь, проверка происходит в шаблоне.
+        """
+
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            create_new_comment_for_comments_table(
+                post=get_post_or_404(url=url),
+                username=self.request.user,
+                text=request.POST['text'],
+            )
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+        return render(
+            request,
+            'myblog/post_detail.html',
+            context={
+                'form': comment_form
+            }
         )
 
 

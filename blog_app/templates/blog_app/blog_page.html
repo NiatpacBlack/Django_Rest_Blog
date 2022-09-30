@@ -21,7 +21,7 @@
                     <p class="card-text">{{ post.description|safe|truncatechars:1000 }}</p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
-                            <a href="{% url 'blog_post' post.url %}" class="btn btn-sm btn-outline-secondary">Подробнее</a>
+                            <a href="{% url 'blog_post' post.url %}" class="btn px-4 py-2 btn-sm btn-outline-secondary">Подробнее</a>
                         </div>
                         <small class="text-muted">{{ post.author }}</small>
                         <small class="text-muted">{{ post.created_data }}</small>
