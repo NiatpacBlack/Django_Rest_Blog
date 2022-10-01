@@ -1,8 +1,4 @@
 /*дополнение к бутстраповской карусели на главной странице*/
-.carousel-item {
-    height: 20rem;
-}
-
 .home-slider {
     padding: 0;
 }
@@ -14,12 +10,13 @@
 .home-slider p{
     font-size: 30px;
 }
+
 .carousel-caption {
-    bottom: 100px;
+    text-align: center;
 }
 
 .carousel-item {
-    height: 20rem;
+    height: 30vh;
 }
 
 

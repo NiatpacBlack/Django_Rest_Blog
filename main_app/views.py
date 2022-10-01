@@ -1,5 +1,13 @@
 from django.shortcuts import render
+from django.views import View
+from loguru import logger
 
 
-def home_page(request):
-    return render(request, "main_app/home_page.html")
+class HomePageView(View):
+    """Представление начальной страницы сайта."""
+
+    @logger.catch
+    def get(self, request):
+        """Отображает шаблон главной страницы сайта."""
+
+        return render(request, "main_app/home_page.html")
