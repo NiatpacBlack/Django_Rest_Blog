@@ -39,10 +39,10 @@ class FeedBackView(View):
 
 
 class ThanksView(View):
+    """Представление для отображения страницы с благодарностью, после отправки обратной связи."""
+
     @logger.catch
     def get(self, request):
-        """Отображает шаблон станицы с благодарностью."""
-
         return render(
             request,
             "feedback_app/thanks_page.html",

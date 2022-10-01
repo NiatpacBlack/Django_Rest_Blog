@@ -6,7 +6,8 @@ from loguru import logger
 
 from .blog_services.models_services import (
     get_post_or_404,
-    get_five_last_posts_in_posts_table, create_new_comment_for_comments_table,
+    get_five_last_posts_in_posts_table,
+    create_new_comment_for_comments_table,
 )
 from .blog_services.view_services import get_posts_for_page
 from .forms import CreatePostForm, CommentForm
@@ -51,6 +52,7 @@ class PostPageView(View):
             },
         )
 
+    @logger.catch
     def post(self, request, url):
         """
         При получении данных заполненной формы, добавляет новый комментарий в таблицу CommentModel.

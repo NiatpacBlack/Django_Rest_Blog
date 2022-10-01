@@ -5,7 +5,11 @@ from django.contrib.auth.models import User
 
 
 class RegistrationForm(forms.Form):
-    """Форма регистрации нового пользователя на сайте."""
+    """
+    Форма регистрации нового пользователя на сайте.
+
+    Для создания формы используется crispy-forms, шаблон полей создается в __init__.
+    """
 
     username = forms.CharField(
         label="",

@@ -27,7 +27,7 @@
 
                 <p class="lead">Найдено записей: {{ count }}</p>
                 {% for post in result %}
-                    <h4><a href="../blog/{{ post.url }}">{{ post.title }}</a></h4>
+                    <h4><a href="{% url "blog_post" post.url %}">{{ post.title }}</a></h4>
                     <br>
                     <p>{{ post.description|safe|truncatechars:250 }}</p>
                     <hr>

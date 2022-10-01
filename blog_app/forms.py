@@ -6,6 +6,12 @@ from blog_app.models import PostModel, CommentModel
 
 
 class CreatePostForm(ModelForm):
+    """
+    Форма создания нового поста в блоге. Основана на модели PostModel.
+
+    Для создания формы используется crispy-forms, шаблон полей создается в __init__.
+    """
+
     class Meta:
         model = PostModel
         fields = "__all__"
@@ -34,6 +40,12 @@ class CreatePostForm(ModelForm):
 
 
 class CommentForm(ModelForm):
+    """
+    Форма создания нового комментария. Основана на модели CommentModel.
+
+    Для создания формы используется crispy-forms, шаблон полей создается в __init__.
+    """
+
     class Meta:
         model = CommentModel
         fields = ('text',)

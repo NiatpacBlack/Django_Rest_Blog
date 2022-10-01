@@ -4,7 +4,11 @@ from django import forms
 
 
 class FeedBackForm(forms.Form):
-    """Форма отправки обратной связи администратору на email."""
+    """
+    Форма отправки обратной связи администратору на email.
+
+    Для создания формы используется crispy-forms, шаблон полей создается в __init__.
+    """
 
     name = forms.CharField(
         label="",

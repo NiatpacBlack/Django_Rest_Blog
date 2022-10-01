@@ -1,7 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.views import View
 from loguru import logger
-from taggit.models import Tag
 
 from blog_app.blog_services.models_services import (
     find_query_in_posts_table,
@@ -10,6 +9,7 @@ from blog_app.blog_services.models_services import (
 )
 from blog_app.blog_services.view_services import get_posts_for_page_from_result_of_find
 from search_app.forms import SearchForm
+from search_app.search_services.services import get_tag_or_404
 
 
 class SearchResultsView(View):
@@ -47,7 +47,7 @@ class TagView(View):
 
     @logger.catch
     def get(self, request, slug):
-        tag = get_object_or_404(Tag, slug=slug)
+        tag = get_tag_or_404(slug=slug)
         posts = get_posts_where_tag(tag_name=tag)
         common_tags = get_common_tags_from_posts_table()
         return render(
