@@ -12,3 +12,5 @@
      - `EMAIL_HOST_USER` (ваш email куда будут приходить письма с обратной связью)
      - `EMAIL_HOST_PASSWORD` (пароль для связи с приложением. который можно посмотреть на вашей почте)
    * Вводим команду: `python manage.py runserver`
+## Превью сайта
+![Peek 2022-10-01 20-50](https://user-images.githubusercontent.com/84034483/193422746-15029237-e39b-4c8a-9ece-e67e48e1f14c.gif)
