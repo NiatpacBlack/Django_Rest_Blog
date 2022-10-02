@@ -6,14 +6,18 @@
 {% endblock %}
 {% block content_app %}
     <div class="container-fluid home-slider">
-            <div class="carousel-inner">
-                <div class="carousel-item active" style="background-color: #25282c!important">
-                    <h2 class="text-white text-center mt-5">Найдете интересующую вас статью по ключевому слову</h2>
-                    <div class="carousel-caption d-none d-md-block">
-                        {% crispy form %}
+        <div class="carousel-inner">
+            <div class="carousel-item active bg-secondary">
+                <div class="carousel-caption d-none d-md-block d-flex flex-column">
+                    <div>
+                        <h2 class="text-white text-center mt-5 mb-3 bg-secondary">
+                            Найдете интересующую вас статью по ключевому слову
+                        </h2>
                     </div>
+                    {% crispy form %}
                 </div>
             </div>
+        </div>
     </div>
     <div class="container">
         <div class="row">

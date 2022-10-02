@@ -1,5 +1,5 @@
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit
+from crispy_forms.layout import Layout, Submit, HTML
 from django.forms import ModelForm, Textarea
 
 from blog_app.models import PostModel, CommentModel
@@ -14,7 +14,16 @@ class CreatePostForm(ModelForm):
 
     class Meta:
         model = PostModel
-        fields = "__all__"
+        fields = [
+            "heading",
+            "title",
+            "image",
+            "url",
+            "description",
+            "content",
+            "author",
+            "tag",
+        ]
 
     def __init__(self, *args, **kwargs):
         """При создании объекта класса - FormHelper создаст html шаблон форм."""
@@ -29,7 +38,6 @@ class CreatePostForm(ModelForm):
             "description",
             "content",
             "author",
-            "created_data",
             "tag",
             Submit(
                 "submit",
@@ -63,9 +71,5 @@ class CommentForm(ModelForm):
         self.helper = FormHelper()
         self.helper.layout = Layout(
             'text',
-            Submit(
-                "submit",
-                "Опубликовать",
-                css_class="btn my-3 btn-primary btn-block",
-            ),
+            HTML('<input type="submit" value="Отправить" class="btn my-3 btn-primary btn-block">'),
         )
