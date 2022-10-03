@@ -38,6 +38,13 @@ def get_all_posts_from_blog():
     return PostModel.objects.all()[::-1]
 
 
+def get_last_post_id_from_post_table() -> str:
+    """Возвращает строку с id последнего объекта в таблице PostModel."""
+
+    last_post_id, = PostModel.objects.values('id').order_by('-id')[:1]
+    return last_post_id['id']
+
+
 def find_query_in_posts_table(query: str):
     """
     Возвращает QuerySet из тех постов, в который найден запрос query. Выводит начиная с самого нового.
@@ -48,6 +55,32 @@ def find_query_in_posts_table(query: str):
     return PostModel.objects.filter(
         Q(heading__icontains=query) | Q(content__icontains=query)
     )[::-1]
+
+
+def create_new_post_for_post_table(heading: str, title: str, description: str, content: str, author: str,
+                                   tag: str, image: str) -> None:
+    """
+    Добавляет новый пост в таблицу PostModel.
+
+    Поле slug заполняется следующим номером id после последнего поста.
+    Чтобы добавить теги полученные из формы TaggableManager, используем апдейт созданного поля и разделяем теги запятой.
+    """
+
+    last_post_id = get_last_post_id_from_post_table()
+
+    PostModel.objects.create(
+        heading=heading,
+        title=title,
+        image=image,
+        url=f'post-{int(last_post_id) + 1}',
+        description=description,
+        content=content,
+        author=author,
+    )
+
+    new_post = PostModel.objects.get(url=f'post-{int(last_post_id) + 1}')
+    for one_tag in tag.replace(" ", "").split(','):
+        new_post.tag.add(one_tag)
 
 
 def create_new_comment_for_comments_table(post: str, username: str, text: str):

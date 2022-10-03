@@ -24,10 +24,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
     "ckeditor",
     "ckeditor_uploader",
     "crispy_forms",
     "taggit",
+
     "main_app.apps.MainAppConfig",
     "blog_app.apps.BlogAppConfig",
     "feedback_app.apps.FeedbackAppConfig",

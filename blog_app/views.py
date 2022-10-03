@@ -7,7 +7,7 @@ from loguru import logger
 from .blog_services.models_services import (
     get_post_or_404,
     get_five_last_posts_in_posts_table,
-    create_new_comment_for_comments_table,
+    create_new_comment_for_comments_table, create_new_post_for_post_table,
 )
 from .blog_services.view_services import get_posts_for_page
 from .forms import CreatePostForm, CommentForm
@@ -93,13 +93,21 @@ class CreatePostPageView(View):
             },
         )
 
-    @logger.catch
     def post(self, request):
         """Получает данные введенной формы, создает новую статью в базе данных и перенаправляет на страницу блога."""
 
         form = CreatePostForm(request.POST)
+        print(request.POST)
         if form.is_valid():
-            form.save()
+            create_new_post_for_post_table(
+                heading=request.POST['heading'],
+                title=request.POST['title'],
+                image=request.FILES.get('image', None),
+                description=request.POST['description'],
+                content=request.POST['content'],
+                author=self.request.user,
+                tag=request.POST['tag'],
+            )
             return HttpResponseRedirect(reverse("blog"))
         return render(
             request,

@@ -9,6 +9,15 @@
         <h1 class="text-center text-primary my-4">
             Создайте свой пост
         </h1>
-        {% crispy form %}
+        {% if user.is_authenticated %}
+            <div class="card-body">
+                {% crispy form %}
+            </div>
+        {% else %}
+            <h6 class="card-header text-center">
+                <a href="{% url 'signin' %}">Авторизуйтесь</a> или <a href="{% url 'signup' %}">Зарегистрируйтесь</a>
+                чтобы добавить свой пост
+            </h6>
+        {% endif %}
     </div>
 {% endblock %}

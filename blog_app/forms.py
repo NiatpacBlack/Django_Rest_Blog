@@ -18,10 +18,8 @@ class CreatePostForm(ModelForm):
             "heading",
             "title",
             "image",
-            "url",
             "description",
             "content",
-            "author",
             "tag",
         ]
 
@@ -34,10 +32,8 @@ class CreatePostForm(ModelForm):
             "heading",
             "title",
             "image",
-            "url",
             "description",
             "content",
-            "author",
             "tag",
             Submit(
                 "submit",

@@ -16,7 +16,7 @@ class PostModel(models.Model):
     content = RichTextUploadingField(verbose_name="Контент поста")
     author = models.ForeignKey(User, related_name="posts", on_delete=models.CASCADE, verbose_name="Автор")
     created_data = models.DateField(default=timezone.now, verbose_name="Дата создания")
-    tag = TaggableManager()
+    tag = TaggableManager(blank=True, verbose_name='Теги')
 
     def __str__(self):
         return self.title
