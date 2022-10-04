@@ -1,3 +1,5 @@
+import smtplib
+
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views import View
@@ -23,11 +25,20 @@ class FeedBackView(View):
 
     @logger.catch
     def post(self, request):
-        """При корректно введенной форме, отправит сообщение на email администратора."""
+        """
+        При корректно введенной форме, и корректных настройках email в settings.py отправит сообщение на ваш email.
+        """
 
         form = FeedBackForm(request.POST)
+
         if form.is_valid():
-            send_mail_from_form(feedback_form=form.cleaned_data)
+            try:
+                send_mail_from_form(feedback_form=form.cleaned_data)
+            except smtplib.SMTPAuthenticationError:
+                logger.exception(
+                    "Произошла ошибка при отправке формы обратной связи. Проверьте корректность email и email_app_key "
+                    "установленных в settings.py"
+                )
             return HttpResponseRedirect("thanks")
         return render(
             request,

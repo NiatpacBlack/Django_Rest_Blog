@@ -11,6 +11,9 @@
         </h1>
         {% if user.is_authenticated %}
             <div class="card-body">
+                {% if error %}
+                    <h4 class="text-center text-danger">{{ error }}</h4>
+                {% endif %}
                 {% crispy form %}
             </div>
         {% else %}

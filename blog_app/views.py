@@ -93,11 +93,13 @@ class CreatePostPageView(View):
             },
         )
 
+    @logger.catch
     def post(self, request):
         """Получает данные введенной формы, создает новую статью в базе данных и перенаправляет на страницу блога."""
 
         form = CreatePostForm(request.POST)
-        print(request.POST)
+        error = ""
+
         if form.is_valid():
             create_new_post_for_post_table(
                 heading=request.POST['heading'],
@@ -109,10 +111,13 @@ class CreatePostPageView(View):
                 tag=request.POST['tag'],
             )
             return HttpResponseRedirect(reverse("blog"))
+        else:
+            error = "Поле тег заполнено некорректно, повторите попытку."
         return render(
             request,
             "blog_app/create_post_page.html",
             context={
+                "error": error,
                 "form": CreatePostForm(),
             },
         )
