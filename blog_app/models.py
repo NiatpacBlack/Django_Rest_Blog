@@ -12,7 +12,7 @@ class PostModel(models.Model):
     title = models.CharField(max_length=255, verbose_name="Название")
     image = models.ImageField(blank=True, null=True, verbose_name="Картинка")
     url = models.SlugField(verbose_name="Имя ссылки на ваш пост")
-    description = RichTextUploadingField(verbose_name="Описание")
+    description = models.TextField(verbose_name="Описание")
     content = RichTextUploadingField(verbose_name="Контент поста")
     author = models.ForeignKey(User, related_name="posts", on_delete=models.CASCADE, verbose_name="Автор")
     created_data = models.DateField(default=timezone.now, verbose_name="Дата создания")

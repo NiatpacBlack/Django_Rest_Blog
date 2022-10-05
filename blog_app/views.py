@@ -112,7 +112,7 @@ class CreatePostPageView(View):
             )
             return HttpResponseRedirect(reverse("blog"))
         else:
-            error = "Поле тег заполнено некорректно, повторите попытку."
+            error = "Форма заполнена некорректно, повторите попытку."
         return render(
             request,
             "blog_app/create_post_page.html",

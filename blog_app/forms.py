@@ -52,7 +52,7 @@ class CreatePostForm(ModelForm):
         )
 
         if not self.cleaned_data['tag']:
-            raise ValidationError("Поле не должно быть пустым")
+            raise ValidationError("Поле тег не должно быть пустым")
 
         list_all_tags = [tag for tag in self.cleaned_data['tag']]
 
