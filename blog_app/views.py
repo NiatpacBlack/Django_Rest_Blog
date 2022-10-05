@@ -48,7 +48,7 @@ class PostPageView(View):
             context={
                 'form': CommentForm(),
                 "post": get_post_or_404(url=url),
-                "last_posts": get_five_last_posts_in_posts_table(),
+                "last_posts": get_five_last_posts_in_posts_table(open_post_url=url),
             },
         )
 
